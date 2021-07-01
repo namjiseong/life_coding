@@ -10,3 +10,8 @@
 
 @8 통계에 기반한 학습
 https://www.advancedwebranking.com/html/
+
+@9 줄바꿈 : br vs p
+<br> - 줄바꿈
+<p>단락</p>
+<p style="margin-top:45px;">단락 사이의 거리 (css)</p>
