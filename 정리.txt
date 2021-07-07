@@ -85,6 +85,11 @@ web browser 접속(요청) -> web server(html 자료있음)(응답)
 web server 직접 서버 설치!
 web hosting 업체 대행!
 
-
-
-
+@18 웹호스팅(github pages)
+1. github에 repo생성 후 웹 소스 파일 올리기
+2. setting에서 gitpage 들어가기
+3. none-> 작업한 branch로 변경 후 저장
+4. 위에 생긴 주소로 활성화 됨. 
+5. 해당 주소 + 파일 이름을 입력하면 웹 접속 가능
+- static web hosting : html 파일만 서비스가능
+다른 웹 hosting -> 인터넷 검색,  free static web hosting
