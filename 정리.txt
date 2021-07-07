@@ -71,3 +71,9 @@ unsplash.com - 이미지 사이트
 </a>
 
 @15 웹사이트 완성
+각 페이지 링크를 통해 연동
+
+@16 원시웹
+internet vs web - internet 안에 web이 존재
+핵공격에도 안전한 통신? -> internet 개발
+info.cern.ch - 최초의 원시웹페이지
