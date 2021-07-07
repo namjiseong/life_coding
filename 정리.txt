@@ -77,3 +77,14 @@ unsplash.com - 이미지 사이트
 internet vs web - internet 안에 web이 존재
 핵공격에도 안전한 통신? -> internet 개발
 info.cern.ch - 최초의 원시웹페이지
+
+@17 인터넷을 여는 열쇠 : 서버와 클라이언트
+컴퓨터 2대 서로 상호작용
+web browser 접속(요청) -> web server(html 자료있음)(응답)
+클라이언트(client)            서버(server)
+web server 직접 서버 설치!
+web hosting 업체 대행!
+
+
+
+
