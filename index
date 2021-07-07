@@ -64,3 +64,9 @@ unsplash.com - 이미지 사이트
 <head>본문 제외 설명 줄, title, meta ...</head>
 <body>본문</body>
 </html>
+
+@14 HTML 태그의 제왕
+<a href="주소" target="_blank"(새탭으로 열기) title="세부 설명">
+링크 걸릴 내용
+</a>
+
