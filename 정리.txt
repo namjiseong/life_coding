@@ -93,3 +93,10 @@ web hosting 업체 대행!
 5. 해당 주소 + 파일 이름을 입력하면 웹 접속 가능
 - static web hosting : html 파일만 서비스가능
 다른 웹 hosting -> 인터넷 검색,  free static web hosting
+
+부록:
+사이트 기능 추가
+동영상 삽입: 유튜브 소스
+댓글기능: disqus
+채팅기능: tawk
+방문자 분석기: analytics.google.com
