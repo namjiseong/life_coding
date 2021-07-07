@@ -24,3 +24,34 @@ https://www.advancedwebranking.com/html/
 @11 최후의 문법 속성과 img
 unsplash.com - 이미지 사이트
 <img src="이미지경로" width="가로" height="높이">
+
+@12 부모 자식과 목록
+<p>부모
+    <a> 자식
+</p>
+
+번호 없는 목록
+<ul>
+<li>목록1</li>
+<li>목록2</li>
+<li>목록3</li>
+</ul>
+
+
+번호 있는 목록
+<ol>
+<li>목록1</li>
+<li>목록2</li>
+<li>목록3</li>
+</ol>
+
+
+설명있는 목록
+<dl>
+<dt>목록1</dt>
+<dd>설명</dd>
+<dt>목록2</dt>
+<dd>설명</dd>
+<dt>목록3</dt>
+<dd>설명</dd>
+</dl>
