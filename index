@@ -55,3 +55,12 @@ unsplash.com - 이미지 사이트
 <dt>목록3</dt>
 <dd>설명</dd>
 </dl>
+
+@13 문서의 구조와 슈퍼스타들
+<title>웹 페이지 상단 제목</title>
+<meta charset="utf-8"> : 웹 페이지 여는 형식 변경
+
+<html>
+<head>본문 제외 설명 줄, title, meta ...</head>
+<body>본문</body>
+</html>
