@@ -50,3 +50,15 @@ h1{
 
 @9 박스 모델 써먹기
 우클릭 - 검사 를 통해 margin, padding, width 등 조정하여 디자인
+
+@10 그리드 소개
+https://developer.mozilla.org/ko/docs/Web/CSS/CSS_Grid_Layout
+
+<div>콘텐츠 분할 요소</div>
+
+#grid{
+    border:5px solid pink;
+    display:grid;
+    grid-template-columns: 150px 1fr; - 1번 내용 150px차지 나머지 div가 공간 차지
+}
+
