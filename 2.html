@@ -30,8 +30,29 @@
             display: grid;
             grid-template-columns: 150px 1fr;
         }
-        #article{
+        #grid #article{
             padding:25px;
+        }
+        @media(max-width:800px){
+            #grid{
+            display: block;
+            grid-template-columns: 150px 1fr;
+        }
+        #grid ol{
+            border-right:none;
+            width: 100px;
+            margin:0;
+            padding:20px;
+            padding-left:32px;
+            
+        }
+        h1 {
+            font-size: 60px;
+            text-align: center;
+            border-bottom:none;
+            margin:0;
+            padding:20px;
+        }
         }
     </style>
 </head>

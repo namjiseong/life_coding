@@ -79,3 +79,8 @@ https://developer.mozilla.org/ko/docs/Web/CSS/CSS_Grid_Layout
         display:none;
     }
 }
+
+@13 미디어 쿼리 써먹기
+@media(조건){
+    내용 - 기존 코드를 복사하여 수정하기
+}
