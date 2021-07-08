@@ -34,4 +34,16 @@ css text middle property
 https://www.w3schools.com/cssref/css_selectors.asp
 선택자 정리 페이지
 
-
+@8 박스 모델
+/*
+주석
+*/
+본인 크기만큼 - inline
+화면 전체 - block
+h1{
+    border:5px solid red; - 박스 선
+    padding:20px; - 내용과 박스 사이 거리
+    margin:20px; - 박스와 바깥 내용과 거리
+    display:block; - 화면 전체 사용
+    width:100px; - 화면 전체 사용에서 100px만 사용으로 변경
+    }
