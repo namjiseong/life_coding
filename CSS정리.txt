@@ -47,3 +47,6 @@ h1{
     display:block; - 화면 전체 사용
     width:100px; - 화면 전체 사용에서 100px만 사용으로 변경
     }
+
+@9 박스 모델 써먹기
+우클릭 - 검사 를 통해 margin, padding, width 등 조정하여 디자인
