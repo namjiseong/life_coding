@@ -20,3 +20,7 @@ declaration(효과)   color:red
                     property(속성) : value(값)
 }
 
+@6 CSS 속성을 스스로 알아내기
+검색 방법
+ex) css text size property
+css text middle property
