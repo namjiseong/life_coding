@@ -1,0 +1,2 @@
+@2 CSS 등장 이전의 상황
+<font color="red">빨강</font>
