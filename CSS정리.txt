@@ -84,3 +84,7 @@ https://developer.mozilla.org/ko/docs/Web/CSS/CSS_Grid_Layout
 @media(조건){
     내용 - 기존 코드를 복사하여 수정하기
 }
+
+@14 CSS코드의 재사용
+복붙의 활용
+중복 제거 - style.css 파일로 모두 통합(<style>태그 빼고 넣기)
