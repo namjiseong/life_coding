@@ -62,3 +62,8 @@ https://developer.mozilla.org/ko/docs/Web/CSS/CSS_Grid_Layout
     grid-template-columns: 150px 1fr; - 1번 내용 150px차지 나머지 div가 공간 차지
 }
 
+@11 그리드 써먹기
+1. <div>로 내용 분리(부모 div 자식 div 필요)
+2. id로 특정하기
+3. style에서 id로 묶은 후 padding, margin 등등 조정
+4. grid-template-columns: 150px 1fr; - 1번 150px / 나머지 내용 
