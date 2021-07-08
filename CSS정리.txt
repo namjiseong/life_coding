@@ -24,3 +24,14 @@ declaration(효과)   color:red
 검색 방법
 ex) css text size property
 css text middle property
+
+@7 선택자를 스스로 알아내기
+<a href="2.html"class="saw" id ="active">
+3. 태그 선택자 a 
+2. 클래스 선택자 .saw
+1. id 선택자 #active
+같은 우선순위일때 나중에 적용한 것이 덮어씀
+https://www.w3schools.com/cssref/css_selectors.asp
+선택자 정리 페이지
+
+
