@@ -13,3 +13,10 @@
 style 태그 사용 or style 속성 사용으로 css 문법 적용
 text-decoration: none; - 밑줄 제거하기
 style="color:red;text-decoration:underline" - 빨강으로 변경, 밑줄 하기
+
+@5 혁명적 변화
+selector(선택자) a{
+declaration(효과)   color:red 
+                    property(속성) : value(값)
+}
+
