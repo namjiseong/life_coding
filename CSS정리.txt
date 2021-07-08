@@ -1,2 +1,10 @@
 @2 CSS 등장 이전의 상황
 <font color="red">빨강</font>
+
+@3 CSS의 등장
+#모든 a태그의 색상 변경 - head에 포함시키기
+<style>
+        a {color:red;
+        }
+</style>
+
