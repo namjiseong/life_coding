@@ -67,3 +67,15 @@ https://developer.mozilla.org/ko/docs/Web/CSS/CSS_Grid_Layout
 2. id로 특정하기
 3. style에서 id로 묶은 후 padding, margin 등등 조정
 4. grid-template-columns: 150px 1fr; - 1번 150px / 나머지 내용 
+
+@12 미디어 쿼리 소개
+@media(max-width:800px){ - 화면 크기가 800이 최대 = 800 보다 작다면
+    div{
+        display:none;
+    }
+}
+@media(min-width:800px){ - 화면 크기가 800이 최소 = 800 보다 크다면
+    div{
+        display:none;
+    }
+}
