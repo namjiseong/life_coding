@@ -53,3 +53,5 @@ js tag style...
 document.querySelector('body').style.backgroundColor='black';
 body 태그 선택하여 style 변경하는 것
 
+@13 프로그램, 프로그래밍, 프로그래머
+JS는 사용자와 상호작용, 프로그래밍 형태
