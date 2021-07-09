@@ -1,2 +1,10 @@
 @3 HTML과 JavaScript의 만남1(Script 태그)
 <script>JavaScript code</script>
+
+@4 HTML과 JavaScript의 만남2(이벤트)
+<input type="button" value="hi" onclick="alert('hi')">
+ 버튼 생성             버튼 안의 텍스트     클릭시 알림창
+onchange - 텍스트 바뀔시
+onkeydown - 키보드 누를 시
+
+
