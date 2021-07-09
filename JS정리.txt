@@ -71,3 +71,9 @@ if(){
 
 @17 조건문의 활용
 if문 사용하여 토글키 만들기
+
+@18 리팩토링 중복의 제거
+input 안에서
+this.value == 'night' - this를 사용하여 간편화
+var target = document.querySelector('body');
+변수 사용하여 중복 제거하기
