@@ -7,4 +7,7 @@
 onchange - 텍스트 바뀔시
 onkeydown - 키보드 누를 시
 
+@5 HTML과 JavaScript의 만남2(콘솔)
+우클릭, 검사 누르고 console창에서 JS코드 실행가능
+
 
