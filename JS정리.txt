@@ -10,4 +10,14 @@ onkeydown - 키보드 누를 시
 @5 HTML과 JavaScript의 만남2(콘솔)
 우클릭, 검사 누르고 console창에서 JS코드 실행가능
 
+@6 데이터타입- 문자열과 숫자
+String
+Null
+Boolean
+Undefined
+Number
+Symbol
 
+콘솔창에서 실행해보기
+"string".length - 글자수 출력
+"string".indexOf('world') - 위치반환
