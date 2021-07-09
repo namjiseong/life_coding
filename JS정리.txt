@@ -1,0 +1,2 @@
+@3 HTML과 JavaScript의 만남1(Script 태그)
+<script>JavaScript code</script>
