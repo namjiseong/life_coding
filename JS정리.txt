@@ -47,3 +47,9 @@ head에서 한번에 디자인가능
 .class선택
 #id선택
 
+@12 제어할 태그 선택하기
+검색으로 알아보기
+js tag style...
+document.querySelector('body').style.backgroundColor='black';
+body 태그 선택하여 style 변경하는 것
+
