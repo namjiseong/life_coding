@@ -21,3 +21,9 @@ Symbol
 콘솔창에서 실행해보기
 "string".length - 글자수 출력
 "string".indexOf('world') - 위치반환
+
+@7 변수와 대입 연산자
+x = 1
+y = 1
+x + y;
+"fsfs"+name+"fsfs" - 변수로 수정하기 편하게
