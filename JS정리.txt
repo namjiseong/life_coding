@@ -27,3 +27,16 @@ x = 1
 y = 1
 x + y;
 "fsfs"+name+"fsfs" - 변수로 수정하기 편하게
+
+@8 웹브라우저 제어
+<body style="~~~">
+
+@9 CSS기초 : style속성
+<h2 style="background-color: coral;color:powderblue">
+특정태그를 style태그로 디자인 가능
+
+@10 CSS기초 : style태그
+의미 없는 태그로 감싸기
+<div></div> - 줄바꿈 됨
+<span class="js"></span> - 줄바꿈 안됨
+head에서 한번에 디자인가능

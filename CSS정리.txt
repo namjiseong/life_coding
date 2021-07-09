@@ -87,4 +87,5 @@ https://developer.mozilla.org/ko/docs/Web/CSS/CSS_Grid_Layout
 
 @14 CSS코드의 재사용
 복붙의 활용
+
 중복 제거 - style.css 파일로 모두 통합(<style>태그 빼고 넣기)
