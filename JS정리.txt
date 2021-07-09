@@ -40,3 +40,10 @@ x + y;
 <div></div> - 줄바꿈 됨
 <span class="js"></span> - 줄바꿈 안됨
 head에서 한번에 디자인가능
+같은 단어 동시 선택: ctrl + shift + L
+
+@11 CSS기초 : 선택자
+전체선택
+.class선택
+#id선택
+
