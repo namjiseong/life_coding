@@ -173,3 +173,22 @@ framework - 만들고자하는 것이 무엇인가에 따라서 언제나 필요
 - 한줄로 사용해야됨
 - jQuery사용 가능하게 됨
 $('a').css('color', color); - colors.js파일에서 입력
+
+@36 UI vs API
+유저인터페이스
+API: Application Programming Interface(프로그래밍을 위한 조작장치 정도)
+- alert()
+
+@37마무리
+document 객체로 검색
+DOM 수색 Document Object Model
+window 객체 조사
+ajax - 리로드하지않고 정보 갱신
+cookie - 리로드되어도 갱신 x
+offline web application - 인터넷 없이 구동
+weebRTC- 화상통신
+speech - 음성 인식
+webGL - 3차원 게임
+webVR- 가상현실
+
+
