@@ -127,7 +127,13 @@ function sum2(left, right){
 head에서 매개변수 - self
 body에서 인자 - this
 
-@29객체 예고
+@29 객체 예고
 ㅁ.~~ - ㅁ는 객체이다.
 ㅁ.함수 - 메소드라고 부른다.
 
+@30 객체 쓰기와 읽기
+var coworkers = {
+                "programmer":"egoing",
+                "designer":"leezche"
+            };
+coworkers.programmer = egoing이라는 뜻
