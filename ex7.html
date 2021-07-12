@@ -19,6 +19,23 @@
             coworkers["data scientist"] = "taeho";
             document.write("data scientist : "+coworkers['data scientist']+'<br>');
         </script>
-
+    <h2>Iterate</h2>
+    <script>
+        for(var key in coworkers){
+            document.write(key+' : '+coworkers[key]+'<br>');
+        }
+    </script>
+    <h2>Property & Method</h2>
+    <script>
+        coworkers.showAll = function(){
+            for(var key in coworkers){
+                if(key=='showAll'){
+                    continue;
+                }
+                document.write(key+' : '+this[key]+'<br>');
+        }
+        }
+        coworkers.showAll();
+    </script>
     </body>
 </html>

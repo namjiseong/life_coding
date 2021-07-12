@@ -137,3 +137,12 @@ var coworkers = {
                 "designer":"leezche"
             };
 coworkers.programmer = egoing이라는 뜻
+
+@31 객체와 반복문
+for(var key in coworkers) - key란 객체 안의 키값
+document.write(key+' : '+coworkers[key]+'<br>');
+key값과 value값 출력하는 방법
+
+@31 프로퍼티와 메소드
+객체에 속한 변수는 프로퍼티
+객체에 속한 함수는 메소드
