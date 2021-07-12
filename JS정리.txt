@@ -126,3 +126,8 @@ function sum2(left, right){
 @28 함수의 활용
 head에서 매개변수 - self
 body에서 인자 - this
+
+@29객체 예고
+ㅁ.~~ - ㅁ는 객체이다.
+ㅁ.함수 - 메소드라고 부른다.
+
