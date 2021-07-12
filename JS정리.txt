@@ -77,3 +77,29 @@ input 안에서
 this.value == 'night' - this를 사용하여 간편화
 var target = document.querySelector('body');
 변수 사용하여 중복 제거하기
+
+@19 반복문 예고
+배열, 반복문
+
+@20 배열
+<script>
+  var coworkers = ["egoing", "leezche"];
+</script>
+ㅁ.push() 배열에 넣기
+ㅁ.write() 배열 원소 출력
+
+@21 반복문
+var i =0;
+while(i < 3){
+    반복문
+    i = i + 1;
+}
+
+@22배열과 반복문
+<a href="http://a.com/'+coworkers[i]+'">'+coworkers[i]+'</a>
+while문으로 반복 가능
+<a href="앞 주소'+변수 주소+'">'+변수내용+'</a>
+
+
+
+
