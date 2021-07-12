@@ -1,0 +1,2 @@
+cig - 서버와 python 연동을 위한 것
+DocumentRoot "C:/Bitnami/wampstack-8.0.8-0/apache2/htdocs" - html 파일 위치
