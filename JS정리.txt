@@ -100,6 +100,7 @@ while(i < 3){
 while문으로 반복 가능
 <a href="앞 주소'+변수 주소+'">'+변수내용+'</a>
 
-
+@23 배열과 반복문의 활용
+document.querySelector('a'); - 모든 a태그 선택, 배열로 반환
 
 

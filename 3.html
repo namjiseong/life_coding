@@ -1,3 +1,4 @@
+<html>
 <head>
     <title>생활 코딩 웹 공부 JavaScript</title>
     <meta charset="utf-8">
@@ -29,10 +30,24 @@
         target.style.backgroundColor='black';
         target.style.color='white';
         this.value = 'day';
+
+        var a_list = document.querySelectorAll('a');
+        i = 0;
+        while(i < a_list.length){
+        console.log(a_list[i]);
+        a_list[i].style.color = 'powderblue';
+        i = i + 1;}
+
     }else{
         target.style.backgroundColor='white';
         target.style.color='black';
         this.value = 'night';
+        var a_list = document.querySelectorAll('a');
+        i = 0;
+        while(i < a_list.length){
+        console.log(a_list[i]);
+        a_list[i].style.color = 'blue';
+        i = i + 1;}
     }
     ">
 
@@ -70,3 +85,5 @@
     }
     ">
 </body>
+
+</html>
