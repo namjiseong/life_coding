@@ -1,2 +1,19 @@
 cig - 서버와 python 연동을 위한 것
 DocumentRoot "C:/Bitnami/wampstack-8.0.8-0/apache2/htdocs" - html 파일 위치
+
+htdocs 폴더에 .py파일 추가 후 입력해야하는 것
+#!python
+print("content-type: text/html; charset=utf-8\n")
+
+입력해야지만 서버에서 실행됨
+
+.py파일 실행하여 웹 사이트 출력하기
+
+print('''
+html 내용
+'''.format(title=pageId)) - 
+import cgi 
+form = cgi.FieldStorage()
+pageId = form["id"].value - URL query string 가져오기
+
+
