@@ -122,3 +122,7 @@ function sum(left, right){ - 인자 본문에서 입력하기
 function sum2(left, right){
       return left+right;
     } - 활용도 높아짐
+
+@28 함수의 활용
+head에서 매개변수 - self
+body에서 인자 - this
