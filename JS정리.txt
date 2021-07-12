@@ -103,4 +103,22 @@ while문으로 반복 가능
 @23 배열과 반복문의 활용
 document.querySelector('a'); - 모든 a태그 선택, 배열로 반환
 
+@24 함수 예고
+<head>에 함수 내용
+<body>에 함수 이름만 넣으면 됨
 
+@25 함수의 기본
+function two(){ - function붙이고 함수이름
+      document.write('<li>2-1</li>');
+      document.write('<li>2-2</li>');
+}
+
+@26 함수의 인자
+function sum(left, right){ - 인자 본문에서 입력하기
+    document.write(left+right+'<br>');
+}
+
+@27 리턴
+function sum2(left, right){
+      return left+right;
+    } - 활용도 높아짐
