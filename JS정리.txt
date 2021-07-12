@@ -162,3 +162,14 @@ var ㅁ = {
 1. colors.js 파일에 js코드 입력
 2. <script src="colors.js"></script> 로 import - head에 입력
 여러번 네트워크 접속을 요구하지만 캐시 사용량 관점에서는 비용절감
+
+@35 라이브러리와 프레임워크
+library - 재사용하기 쉽도록 만들어놓은 코드부품
+framework - 만들고자하는 것이 무엇인가에 따라서 언제나 필요한 공통적인 부분
+####jQuery####
+다운로드 or CDN
+<script src="https://ajax.googleapis.com
+/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+- 한줄로 사용해야됨
+- jQuery사용 가능하게 됨
+$('a').css('color', color); - colors.js파일에서 입력

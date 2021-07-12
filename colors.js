@@ -1,3 +1,5 @@
+
+
 var Body = {
     setColor:function(color){
         document.querySelector('body').style.color=color;
@@ -9,13 +11,14 @@ var Body = {
 
 var Links = {
     setColor : function(color){
-        var a_list = document.querySelectorAll('a');
-        i = 0;
-        while(i < a_list.length){
-            console.log(a_list[i]);
-            a_list[i].style.color = color;
-            i = i + 1;
-        }
+        // var a_list = document.querySelectorAll('a');
+        // i = 0;
+        // while(i < a_list.length){
+        //     console.log(a_list[i]);
+        //     a_list[i].style.color = color;
+        //     i = i + 1;
+        // }
+        $('a').css('color', color);
     }
 }
 
