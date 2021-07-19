@@ -1,0 +1,22 @@
+@ fetch API 기본 사용법 - 버튼에 내용 출력하기
+<input type="button" value="fetch" onclick="
+        fetch('css').then(function(response){
+            response.text().then(function(text){
+              alert(text);
+            })
+          })
+        ">
+- 화면에 내용 가져와서 출력하기
+<body>
+    <article>
+ 
+    </article>
+    <input type="button" value="fetch" onclick="
+      fetch('html').then(function(response){
+        response.text().then(function(text){
+          document.querySelector('article').innerHTML = text;
+        })
+      })
+    ">
+  </body>
+
