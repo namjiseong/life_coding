@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>생활 코딩 웹 공부 WEB</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <script src="colors.js"></script>
+</head>
+
+
+<body>
+    <h1><a href="#!welcome" onclick="fetchPage('welcome')">WEB</a></h1>
+    <input type="button" value="night" onclick="
+                nightDayHandler(this);
+            ">
+
+    <div id="grid">
+        <ol id="nav">
+
+        </ol>
+
+        <article>
+
+        </article>
+
+        <script>
+            function fetchPage(name) {
+
+                fetch(name).then(function (response) {
+                    if (response.status == '404') {
+                        alert('not found');
+                    }
+                    else {
+                        response.text().then(function (text) {
+                            document.querySelector('article').innerHTML = text;
+                        })
+                    }
+
+                });
+            }
+            if (location.hash) {
+                fetchPage(location.hash);
+            } else {
+                fetchPage('welcome');
+            }
+
+            fetch('list').then(function (response) {
+                response.text().then(function (text) {
+                    //<li><h3><a href="#!html" onclick="fetchPage('html')">HTML</a></h3></li>
+                    var items = text.split(",");
+                    var i = 0;
+                    var tags='';
+                    while(i<items.length){
+                        var item = items[i];
+                        item = item.trim();
+                        var tag = '<li><a href="#!'+item+'" onclick="fetchPage(\''+item+'\')">'+item+'</a></li>';
+                        tags = tags + tag;
+                        i = i + 1;
+                        console.log(tag);
+                    }
+                    console.log(items);
+                    document.querySelector('#nav').innerHTML = tags;
+                })
+            })
+
+
+
+        </script>
+
+
+</body>
+
+</html>
