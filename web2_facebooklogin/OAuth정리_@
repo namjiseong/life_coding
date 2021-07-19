@@ -20,3 +20,9 @@ login
 logout
 is logined
 api 호출
+
+@https 에서 사용가능
+
+@api 사용
+profile 그래프(연결) api
+user id  

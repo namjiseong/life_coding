@@ -18,8 +18,12 @@
               //statusChangeCallback(response);        // Returns the login status.
               if(response.status === 'connected'){
                   document.querySelector('#authBtn').value = 'Logout';
+                  FB.api('/me', function(resp){
+                    document.querySelector('#name').innerHTML = resp.name;
+                  });
                 } else {
                   document.querySelector('#authBtn').value = 'Login';
+                  document.querySelector('#name').innerHTML = '';
                 }
               
           }
@@ -55,6 +59,10 @@
             });
         }
     ">
+        <span id="name">
+
+        </span>
+
     <h1><a href="#!welcome" onclick="fetchPage('welcome')">WEB</a></h1>
     <input type="button" value="night" onclick="
                 nightDayHandler(this);
