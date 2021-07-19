@@ -8,10 +8,49 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <script src="colors.js"></script>
+
+    
+    <!-- Load the JS SDK asynchronously -->
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+    <script>
+
+        window.fbAsyncInit = function() {//1939056876258081
+            FB.init({
+              appId      : '1939056876258081',
+              cookie     : true,                     // Enable cookies to allow the server to access the session.
+              xfbml      : true,                     // Parse social plugins on this webpage.
+              version    : 'v11.0'           // Use this Graph API version for this call.
+            });
+        
+        
+            FB.getLoginStatus(function(response) {   // Called after the JS SDK has been initialized.
+              console.log(response);
+                //statusChangeCallback(response);        // Returns the login status.
+                if(response.status === 'connected'){
+                    document.querySelector('#authBtn').value = 'Logout';
+                  } else {
+                    document.querySelector('#authBtn').value = 'Login';
+                  }
+                
+            });
+          };
+         
+    </script>
 </head>
 
 
 <body>
+    <input type="button" id="authBtn" value="checking..." onclick="
+        if(this.value === 'Login'){
+            FB.login(function(res){
+                console.log('login =>', res);
+            });
+        }else{
+            FB.logout(function(res){
+                console.log('logout =>', res);
+            });
+        }
+    ">
     <h1><a href="#!welcome" onclick="fetchPage('welcome')">WEB</a></h1>
     <input type="button" value="night" onclick="
                 nightDayHandler(this);
@@ -59,9 +98,9 @@
                         var tag = '<li><a href="#!'+item+'" onclick="fetchPage(\''+item+'\')">'+item+'</a></li>';
                         tags = tags + tag;
                         i = i + 1;
-                        console.log(tag);
+                        
                     }
-                    console.log(items);
+                    
                     document.querySelector('#nav').innerHTML = tags;
                 })
             })
