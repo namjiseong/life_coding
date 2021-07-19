@@ -13,7 +13,17 @@
     <!-- Load the JS SDK asynchronously -->
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
     <script>
-
+        var checkLoginStatus = function(response) {   // Called after the JS SDK has been initialized.
+            console.log(response);
+              //statusChangeCallback(response);        // Returns the login status.
+              if(response.status === 'connected'){
+                  document.querySelector('#authBtn').value = 'Logout';
+                } else {
+                  document.querySelector('#authBtn').value = 'Login';
+                }
+              
+          }
+          
         window.fbAsyncInit = function() {//1939056876258081
             FB.init({
               appId      : '107982174804019',
@@ -23,17 +33,9 @@
             });
         
         
-            FB.getLoginStatus(function(response) {   // Called after the JS SDK has been initialized.
-              console.log(response);
-                //statusChangeCallback(response);        // Returns the login status.
-                if(response.status === 'connected'){
-                    document.querySelector('#authBtn').value = 'Logout';
-                  } else {
-                    document.querySelector('#authBtn').value = 'Login';
-                  }
-                
-            });
-          };
+            
+            FB.getLoginStatus(checkLoginStatus);
+        };
          
     </script>
 </head>
@@ -44,10 +46,12 @@
         if(this.value === 'Login'){
             FB.login(function(res){
                 console.log('login =>', res);
+                checkLoginStatus(res);
             });
         }else{
             FB.logout(function(res){
                 console.log('logout =>', res);
+                checkLoginStatus(res);
             });
         }
     ">
