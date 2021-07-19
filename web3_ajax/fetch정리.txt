@@ -31,3 +31,13 @@ response.status = 파일 해당 값
 <a onclick="
     fetch ~~
 ">html</a>
+
+@ 부분 가리키기 - id값 = location.hash
+진화된 방법: pjax
+초기페이지 만들기
+목록에 링크 넣기- <a href="#!html" 추가
+if(location.hash){
+    fetchPage(location.hash.substr(2));
+  } else {
+    fetchPage('welcome');
+  }

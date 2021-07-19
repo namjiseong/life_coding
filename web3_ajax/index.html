@@ -11,41 +11,53 @@
 
 
     <body>
-        <h1><a href="index.html">WEB</a></h1>
+        <h1><a href="#!welcome" onclick="fetchPage('welcome')">WEB</a></h1>
         <input type="button" value="night" onclick="
-            nightDayHandler(this);
-        ">
-        
-        <div id="grid">
-        <ol>
-            <li><h3><a onclick="fetchPage('html')">HTML</a></h3></li>
-    <li><h3><a onclick="fetchPage('css')">CSS</a></h3></li>
-    <li><h3><a onclick="fetchPage('javascript')">JavaScript</a></h3></li>
+                nightDayHandler(this);
+            ">
     
-        </ol>
+        <div id="grid">
+            <ol>
+                <li>
+                    <h3><a href="#!html" onclick="fetchPage('html')">HTML</a></h3>
+                </li>
+                <li>
+                    <h3><a href="#!css" onclick="fetchPage('css')">CSS</a></h3>
+                </li>
+                <li>
+                    <h3><a href="#!javascript" onclick="fetchPage('javascript')">JavaScript</a></h3>
+                </li>
+    
+            </ol>
+    
+            <article>
+    
+            </article>
+    
+            <script>
+                function fetchPage(name) {
 
-        <article>
+                    fetch(name).then(function (response) {
+                        if (response.status == '404') {
+                            alert('not found');
+                        }
+                        else {
+                            response.text().then(function (text) {
+                                document.querySelector('article').innerHTML = text;
+                            })
+                        }
 
-        </article>
+                    });
+                }
 
-        <script>
-            function fetchPage(name){
-                
-                fetch(name).then(function(response){
-                    if(response.status == '404'){
-                        alert('not found');
-                    }
-                    else{
-                        response.text().then(function(text){
-                            document.querySelector('article').innerHTML = text;
-                        })
-                    }
-                    
-                });
-                
-            }
-        </script>
-
-
+                if(location.hash){
+                    fetchPage(location.hash.surstr(1));
+                }else{
+                    fetchPage('welcome');
+                }
+            </script>
+    
+    
     </body>
 </html>
+
