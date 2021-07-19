@@ -42,4 +42,6 @@ if(location.hash){
     fetchPage('welcome');
   }
 
+  @fetch API polyfill - 호환성 추가
+
   
