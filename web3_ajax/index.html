@@ -1,49 +1,50 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>생활 코딩 웹 공부 WEB</title>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="style.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <head>
+        <title>생활 코딩 웹 공부 WEB</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="style.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-    <script src="colors.js"></script>
-</head>
+        <script src="colors.js"></script>
+    </head>
 
 
-<body>
-    <h1><a href="index.html">WEB</a></h1>
-    <input type="button" value="night" onclick="
-        nightDayHandler(this);
-    ">
-    <div id="grid">
-<ol>
-    <li><h3><a onclick="
-        fetch('html').then(function(response){
-            response.text().then(function(text){
-              document.querySelector('article').innerHTML = text;
-            })
-          })
-        ">HTML</a></h3></li>
-    <li><h3><a onclick="
-        fetch('css').then(function(response){
-            response.text().then(function(text){
-              document.querySelector('article').innerHTML = text;
-            })
-          })">CSS</a></h3></li>
-    <li><h3><a onclick="
-        fetch('javascript').then(function(response){
-            response.text().then(function(text){
-              document.querySelector('article').innerHTML = text;
-            })
-          })
-          ">JavaScript</a></h3></li>
+    <body>
+        <h1><a href="index.html">WEB</a></h1>
+        <input type="button" value="night" onclick="
+            nightDayHandler(this);
+        ">
+        
+        <div id="grid">
+        <ol>
+            <li><h3><a onclick="fetchPage('html')">HTML</a></h3></li>
+    <li><h3><a onclick="fetchPage('css')">CSS</a></h3></li>
+    <li><h3><a onclick="fetchPage('javascript')">JavaScript</a></h3></li>
     
-</ol>
+        </ol>
 
-<article>
+        <article>
 
-</article>
+        </article>
 
+        <script>
+            function fetchPage(name){
+                
+                fetch(name).then(function(response){
+                    if(response.status == '404'){
+                        alert('not found');
+                    }
+                    else{
+                        response.text().then(function(text){
+                            document.querySelector('article').innerHTML = text;
+                        })
+                    }
+                    
+                });
+                
+            }
+        </script>
 
 
     </body>
