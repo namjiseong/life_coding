@@ -26,3 +26,8 @@
 @@ fetch API response 객체
 response.status = 파일 해당 값
 만약 없다면 404로 할당 됨
+
+@ a태그를활용해서 부분 업데이트하기  ajax의 적용
+<a onclick="
+    fetch ~~
+">html</a>
