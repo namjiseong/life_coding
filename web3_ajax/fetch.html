@@ -12,11 +12,20 @@
         </article>
 
         <input type="button" value="fetch" onclick="
+        /*
         fetch('css').then(function(response){
             response.text().then(function(text){
               document.querySelector('article').innerHTML = text;
             })
           })
+        */
+        //Asynchronous - 요청 후 다른 것 실행됨 병렬
+        function callbackme(){
+            console.log('response end');
+        }
+        fetch('html').then(callbackme);
+        console.log(1);
+        console.log(2);
         ">
 
     </body>
