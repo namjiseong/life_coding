@@ -22,3 +22,7 @@
 
 @ fetch API 요청과 응답
 요청 후 병렬적 실행하는 법
+
+@@ fetch API response 객체
+response.status = 파일 해당 값
+만약 없다면 404로 할당 됨

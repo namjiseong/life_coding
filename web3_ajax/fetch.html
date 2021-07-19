@@ -20,10 +20,11 @@
           })
         */
         //Asynchronous - 요청 후 다른 것 실행됨 병렬
-        function callbackme(){
-            console.log('response end');
-        }
-        fetch('html').then(callbackme);
+        fetch('htmls').then(function(response){
+            if (response.status =='404'){
+                alert('Not found')
+            }
+        });
         console.log(1);
         console.log(2);
         ">
