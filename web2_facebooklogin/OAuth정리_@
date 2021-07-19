@@ -1,0 +1,13 @@
+@ 용어 개념
+Client 고객
+Resource Owner 리소스 제공자(구글, 페이스북)
+Resource Server 내 서비스
+
+@필수 요소
+클라이언트 id
+클라이언트 secret
+redirect url
+ex) 페이스북 개발자 사이트에서 등록 절차 밟기
+
+@인증과정과
+id password 대신 access token
