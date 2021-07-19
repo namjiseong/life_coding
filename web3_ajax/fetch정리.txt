@@ -41,3 +41,5 @@ if(location.hash){
   } else {
     fetchPage('welcome');
   }
+
+  

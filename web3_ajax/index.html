@@ -17,17 +17,8 @@
             ">
     
         <div id="grid">
-            <ol>
-                <li>
-                    <h3><a href="#!html" onclick="fetchPage('html')">HTML</a></h3>
-                </li>
-                <li>
-                    <h3><a href="#!css" onclick="fetchPage('css')">CSS</a></h3>
-                </li>
-                <li>
-                    <h3><a href="#!javascript" onclick="fetchPage('javascript')">JavaScript</a></h3>
-                </li>
-    
+            <ol id="nav">
+                
             </ol>
     
             <article>
@@ -49,12 +40,20 @@
 
                     });
                 }
-
                 if(location.hash){
                     fetchPage(location.hash.surstr(1));
                 }else{
                     fetchPage('welcome');
                 }
+
+                fetch('list').then(function(response){
+                    response.text().then(function(text){
+                      document.querySelector('#nav').innerHTML = text;
+                    })
+                  })
+
+
+
             </script>
     
     
