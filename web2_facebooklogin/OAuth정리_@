@@ -11,3 +11,12 @@ ex) 페이스북 개발자 사이트에서 등록 절차 밟기
 
 @인증과정과
 id password 대신 access token
+
+@필요한 것
+sdk
+sdk 초기화
+-Client id
+login
+logout
+is logined
+api 호출
