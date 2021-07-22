@@ -2,6 +2,50 @@
 var http = require("http");
 var fs = require("fs");
 var url = require("url");
+
+function templateHTML(title, list, body){
+    return `
+    <head>
+    <title>생활 코딩 웹 공부 ${title}</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="colors.js"></script>
+    </head>
+
+
+    <body>
+    
+    <h1><a href="/">WEB</a></h1>
+    <input type="button" value="night" onclick="
+        nightDayHandler(this);
+    ">
+    <div id="grid">
+    ${list}
+    <div id="article">
+    <p>
+    ${body}
+    </p>
+
+    </div>
+    </div>
+
+    </body>
+    `;
+}
+
+function templateList(files){
+    var list = '<ul>';
+    var i = 0;
+    
+    while(i < files.length){
+        list = list + '<li><a href="/?id='+files[i]+'">'+files[i]+'</a></li>';
+        i = i + 1;
+    }
+    list = list + '</ul>';
+    return list;
+}
+
 //서버 열기
 var app = http.createServer(function (request, response) {
 
@@ -12,109 +56,31 @@ var app = http.createServer(function (request, response) {
     if (pathname === "/") {
     //if  홈페이지라면
     
-    if(queryData.id === undefined){
-        var list = '<ul>';
-        fs.readdir('./data/', (err, files)=>{
-        
-        // files.forEach(file =>{
-        //     console.log(file);
-        // });
-    
-        var i = 0;
-    
-        while(i < files.length){
-            list = list + '<li><a href="/?id='+files[i]+'">'+files[i]+'</a></li>';
-            i = i + 1;
-        }
-        list = list + '</ul>';
-    
-        
-        
-          var title = 'Welcome';
-          var description = 'Hello, Node.js';
-          var template = `
-            <head>
-            <title>생활 코딩 웹 공부 ${title}</title>
-            <meta charset="utf-8">
-            <link rel="stylesheet" href="style.css">
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-            <script src="colors.js"></script>
-            </head>
-        
-        
-            <body>
+        if(queryData.id === undefined){
             
-            <h1><a href="/">WEB</a></h1>
-            <input type="button" value="night" onclick="
-                nightDayHandler(this);
-            ">
-            <div id="grid">
-            ${list}
-            <div id="article">
-            <h2>${title}</h2>
+            fs.readdir('./data/', function(err, files){  
         
-            <p>
-            ${description}</p>
-            </div>
-            </div>
-        
-            </body>
-            `;
-          response.writeHead(200);
-          response.end(template);
-        });
+                var title = 'Welcome';
+                var description = 'Hello, Node.js';
+                //함수 2개로 목록, 본문 구현
+                var list = templateList(files);
+                var template =templateHTML(title, list, `<h2>${title}</h2>${description}`);
+                
+                response.writeHead(200);
+                response.end(template);
+            });
       //다른 하위 페이지
         } else {
-            var list = '<ul>';
-    fs.readdir('./data/', (err, files)=>{
-        
-        // files.forEach(file =>{
-        //     console.log(file);
-        // });
-    
-    var i = 0;
-    
-    while(i < files.length){
-        list = list + '<li><a href="/?id='+files[i]+'">'+files[i]+'</a></li>';
-        i = i + 1;
-    }
-    list = list + '</ul>';
-    
-    
-            fs.readFile(`data/${queryData.id}`, "utf-8", function (err, description) {
-            var title = queryData.id;
-            var template = `
-            <head>
-            <title>생활 코딩 웹 공부 ${title}</title>
-            <meta charset="utf-8">
-            <link rel="stylesheet" href="style.css">
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-            <script src="colors.js"></script>
-            </head>
-        
-        
-            <body>
-            
-            <h1><a href="/">WEB</a></h1>
-            <input type="button" value="night" onclick="
-                nightDayHandler(this);
-            ">
-            <div id="grid">
-            ${list}
-            <div id="article">
-            <h2>${title}</h2>
-        
-            <p>
-            ${description}</p>
-            </div>
-            </div>
-        
-            </body>
-            `;
-            response.writeHead(200);
-            response.end(template);
-        });
-    });
+            fs.readdir('./data/', function(err, files){
+                
+                fs.readFile(`data/${queryData.id}`, "utf-8", function (err, description) {
+                    var title = queryData.id;
+                    var list = templateList(files);
+                    var template = templateHTML(title, list, `<h2>${title}</h2>${description}`);
+                    response.writeHead(200);
+                    response.end(template);
+                });
+            });
         }
     }else{
         
