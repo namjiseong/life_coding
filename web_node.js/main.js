@@ -8,38 +8,79 @@ var app = http.createServer(function (request, response) {
     var _url = request.url;
     var queryData = url.parse(_url, true).query;
     var pathname = url.parse(_url, true).pathname;
-
-
+    
     if (pathname === "/") {
     //if  홈페이지라면
+    
     if(queryData.id === undefined){
+        var list = '<ul>';
+        fs.readdir('./data/', (err, files)=>{
+        
+        // files.forEach(file =>{
+        //     console.log(file);
+        // });
+    
+        var i = 0;
+    
+        while(i < files.length){
+            list = list + '<li><a href="/?id='+files[i]+'">'+files[i]+'</a></li>';
+            i = i + 1;
+        }
+        list = list + '</ul>';
+    
+        
         
           var title = 'Welcome';
           var description = 'Hello, Node.js';
           var template = `
-          <!doctype html>
-          <html>
-          <head>
-            <title>WEB1 - ${title}</title>
+            <head>
+            <title>생활 코딩 웹 공부 ${title}</title>
             <meta charset="utf-8">
-          </head>
-          <body>
+            <link rel="stylesheet" href="style.css">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+            <script src="colors.js"></script>
+            </head>
+        
+        
+            <body>
+            
             <h1><a href="/">WEB</a></h1>
-            <ul>
-              <li><a href="/?id=HTML">HTML</a></li>
-              <li><a href="/?id=CSS">CSS</a></li>
-              <li><a href="/?id=JavaScript">JavaScript</a></li>
-            </ul>
+            <input type="button" value="night" onclick="
+                nightDayHandler(this);
+            ">
+            <div id="grid">
+            ${list}
+            <div id="article">
             <h2>${title}</h2>
-            <p>${description}</p>
-          </body>
-          </html>
-          `;
+        
+            <p>
+            ${description}</p>
+            </div>
+            </div>
+        
+            </body>
+            `;
           response.writeHead(200);
           response.end(template);
-        
+        });
       //다른 하위 페이지
         } else {
+            var list = '<ul>';
+    fs.readdir('./data/', (err, files)=>{
+        
+        // files.forEach(file =>{
+        //     console.log(file);
+        // });
+    
+    var i = 0;
+    
+    while(i < files.length){
+        list = list + '<li><a href="/?id='+files[i]+'">'+files[i]+'</a></li>';
+        i = i + 1;
+    }
+    list = list + '</ul>';
+    
+    
             fs.readFile(`data/${queryData.id}`, "utf-8", function (err, description) {
             var title = queryData.id;
             var template = `
@@ -59,11 +100,7 @@ var app = http.createServer(function (request, response) {
                 nightDayHandler(this);
             ">
             <div id="grid">
-            <ol>
-                <li><h3><a href="/?id=HTML">HTML</a></h3></li>
-                <li><h3><a href="/?id=CSS">CSS</a></h3></li>
-                <li><h3><a href="/?id=JavaScript">JavaScript</a></h3></li>
-            </ol>
+            ${list}
             <div id="article">
             <h2>${title}</h2>
         
@@ -77,7 +114,7 @@ var app = http.createServer(function (request, response) {
             response.writeHead(200);
             response.end(template);
         });
-
+    });
         }
     }else{
         
