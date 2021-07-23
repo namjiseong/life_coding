@@ -2,7 +2,7 @@
 var http = require("http");
 var fs = require("fs");
 var url = require("url");
-
+var qs = require('querystring');
 function templateHTML(title, list, body){
     return `
     <head>
@@ -22,6 +22,7 @@ function templateHTML(title, list, body){
     ">
     <div id="grid">
     ${list}
+    <a href="/create">create</a>
     <div id="article">
     <p>
     ${body}
@@ -82,6 +83,42 @@ var app = http.createServer(function (request, response) {
                 });
             });
         }
+    }else if(pathname === "/create"){
+        fs.readdir('./data/', function(err, files){  
+        
+            var title = 'WEB - create';
+            
+            //함수 2개로 목록, 본문 구현
+            var list = templateList(files);
+            var template =templateHTML(title, list, `
+                <form action="http://localhost:5500/create_process" method="post">
+                <input type="text" name="title" placeholder="title">
+                <p>
+                    <textarea name="description" placeholder="description"></textarea>
+                </p>
+                <p>
+                    <input type="submit">
+                </p>
+                </form>
+            `);
+            
+            response.writeHead(200);
+            response.end(template);
+        });
+    
+    }else if(pathname === "/create_process"){
+        var body = "";
+        request.on('data', function(data){
+            body = body + data;
+        });
+        request.on('end', function(){
+            var post = qs.parse(body);
+            var title = post.title;
+            var description = post.description;
+        });
+        response.writeHead(200);
+        response.end("success");
+        
     }else{
         
         response.writeHead(404);
