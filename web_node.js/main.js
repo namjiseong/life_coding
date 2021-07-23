@@ -3,7 +3,7 @@ var http = require("http");
 var fs = require("fs");
 var url = require("url");
 var qs = require('querystring');
-function templateHTML(title, list, body){
+function templateHTML(title, list, body, control){
     return `
     <head>
     <title>생활 코딩 웹 공부 ${title}</title>
@@ -22,7 +22,7 @@ function templateHTML(title, list, body){
     ">
     <div id="grid">
     ${list}
-    <a href="/create">create</a>
+    ${control}
     <div id="article">
     <p>
     ${body}
@@ -65,7 +65,7 @@ var app = http.createServer(function (request, response) {
                 var description = 'Hello, Node.js! ~~';
                 //함수 2개로 목록, 본문 구현
                 var list = templateList(files);
-                var template =templateHTML(title, list, `<h2>${title}</h2>${description}`);
+                var template =templateHTML(title, list, `<h2>${title}</h2>${description}`, `<a href="/create">create</a>`);
                 
                 response.writeHead(200);
                 response.end(template);
@@ -77,7 +77,7 @@ var app = http.createServer(function (request, response) {
                 fs.readFile(`data/${queryData.id}`, "utf-8", function (err, description) {
                     var title = queryData.id;
                     var list = templateList(files);
-                    var template = templateHTML(title, list, `<h2>${title}</h2>${description}`);
+                    var template = templateHTML(title, list, `<h2>${title}</h2>${description}`, `<a href="/create">create</a> <a href="/update?id=${title}">update</a>`);
                     response.writeHead(200);
                     response.end(template);
                 });
@@ -100,7 +100,7 @@ var app = http.createServer(function (request, response) {
                     <input type="submit">
                 </p>
                 </form>
-            `);
+            `, '');
             
             response.writeHead(200);
             response.end(template);
