@@ -61,7 +61,7 @@ var app = http.createServer(function (request, response) {
             fs.readdir('./data/', function(err, files){  
         
                 var title = 'Welcome';
-                var description = 'Hello, Node.js';
+                var description = 'Hello, Node.js! ~~';
                 //함수 2개로 목록, 본문 구현
                 var list = templateList(files);
                 var template =templateHTML(title, list, `<h2>${title}</h2>${description}`);
