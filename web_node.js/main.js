@@ -3,49 +3,53 @@ var http = require("http");
 var fs = require("fs");
 var url = require("url");
 var qs = require('querystring');
-function templateHTML(title, list, body, control){
-    return `
-    <head>
-    <title>생활 코딩 웹 공부 ${title}</title>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="style.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="colors.js"></script>
-    </head>
 
-
-    <body>
+var template = {
+    HTML:function(title, list, body, control){
+        return `
+        <head>
+        <title>생활 코딩 웹 공부 ${title}</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="style.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="colors.js"></script>
+        </head>
     
-    <h1><a href="/">WEB</a></h1>
-    <input type="button" value="night" onclick="
-        nightDayHandler(this);
-    ">
-    <div id="grid">
-    ${list}
-    ${control}
-    <div id="article">
-    <p>
-    ${body}
-    </p>
-
-    </div>
-    </div>
-
-    </body>
-    `;
-}
-
-function templateList(files){
-    var list = '<ul>';
-    var i = 0;
     
-    while(i < files.length){
-        list = list + '<li><a href="/?id='+files[i]+'">'+files[i]+'</a></li>';
-        i = i + 1;
+        <body>
+        
+        <h1><a href="/">WEB</a></h1>
+        <input type="button" value="night" onclick="
+            nightDayHandler(this);
+        ">
+        <div id="grid">
+        ${list}
+        ${control}
+        <div id="article">
+        <p>
+        ${body}
+        </p>
+    
+        </div>
+        </div>
+    
+        </body>
+        `;
+    },List:function(files){
+        var list = '<ul>';
+        var i = 0;
+        
+        while(i < files.length){
+            list = list + '<li><a href="/?id='+files[i]+'">'+files[i]+'</a></li>';
+            i = i + 1;
+        }
+        list = list + '</ul>';
+        return list;
     }
-    list = list + '</ul>';
-    return list;
 }
+
+
+
 
 //서버 열기
 var app = http.createServer(function (request, response) {
@@ -64,11 +68,11 @@ var app = http.createServer(function (request, response) {
                 var title = 'Welcome';
                 var description = 'Hello, Node.js! ~~';
                 //함수 2개로 목록, 본문 구현
-                var list = templateList(files);
-                var template =templateHTML(title, list, `<h2>${title}</h2>${description}`, `<a href="/create">create</a>`);
+                var list = template.List(files);
+                var html =template.HTML(title, list, `<h2>${title}</h2>${description}`, `<a href="/create">create</a>`);
                 
                 response.writeHead(200);
-                response.end(template);
+                response.end(html);
             });
       //다른 하위 페이지
         } else {
@@ -76,8 +80,8 @@ var app = http.createServer(function (request, response) {
                 
                 fs.readFile(`data/${queryData.id}`, "utf-8", function (err, description) {
                     var title = queryData.id;
-                    var list = templateList(files);
-                    var template = templateHTML(title, list,
+                    var list = template.List(files);
+                    var html = template.HTML(title, list,
                          `<h2>${title}</h2>${description}`,
                           `<a href="/create">create</a>
                            <a href="/update?id=${title}">update</a>
@@ -87,7 +91,7 @@ var app = http.createServer(function (request, response) {
                            </form>`
                            );
                     response.writeHead(200);
-                    response.end(template);
+                    response.end(html);
                 });
             });
         }
@@ -97,8 +101,8 @@ var app = http.createServer(function (request, response) {
             var title = 'WEB - create';
             
             //함수 2개로 목록, 본문 구현
-            var list = templateList(files);
-            var template =templateHTML(title, list, `
+            var list = template.List(files);
+            var html =template.HTML(title, list, `
                 <form action="/create_process" method="post">
                 <input type="text" name="title" placeholder="title">
                 <p>
@@ -111,7 +115,7 @@ var app = http.createServer(function (request, response) {
             `, '');
             
             response.writeHead(200);
-            response.end(template);
+            response.end(html);
         });
     
     }else if(pathname === "/create_process"){
@@ -135,8 +139,8 @@ var app = http.createServer(function (request, response) {
                 
             fs.readFile(`data/${queryData.id}`, "utf-8", function (err, description) {
                 var title = queryData.id;
-                var list = templateList(files);
-                var template = templateHTML(
+                var list = template.List(files);
+                var html = template.HTML(
                     title,
                     list,
                     `
@@ -154,7 +158,7 @@ var app = http.createServer(function (request, response) {
                   `<a href="/create">create</a> <a href="/update?id=${title}">update</a>`
                 );
                 response.writeHead(200);
-                response.end(template);
+                response.end(html);
             });
             });
     }else if(pathname === "/update_process"){
