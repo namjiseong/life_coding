@@ -6,7 +6,15 @@ var template = require('./lib/template.js');
 var path = require('path');
 var sanitizeHtml = require('sanitize-html');
 
-console.log(11);
+var mysql = require('mysql');
+var db = mysql.createConnection({
+  host:'localhost',
+  user:'root',
+  password:'qsdrwe159',
+  database:'open'
+});
+db.connect();
+
 
 var app = http.createServer(function(request,response){
     var _url = request.url;
@@ -14,7 +22,7 @@ var app = http.createServer(function(request,response){
     var pathname = url.parse(_url, true).pathname;
     if(pathname === '/'){
       if(queryData.id === undefined){
-        fs.readdir('./data', function(error, filelist){
+        /*fs.readdir('./data', function(error, filelist){
           var title = 'Welcome';
           var description = 'Hello, Node.js';
           var list = template.list(filelist);
@@ -24,6 +32,11 @@ var app = http.createServer(function(request,response){
           );
           response.writeHead(200);
           response.end(html);
+        */
+        db.query(`SELECT * FROM topic`, function(error,topics){
+          console.log(topics);
+          response.writeHead(200);
+          response.end('Success');
         });
       } else {
         fs.readdir('./data', function(error, filelist){
