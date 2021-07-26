@@ -7,7 +7,7 @@ var path = require('path');
 var template = require('./lib/template.js');
 
 var sanitizeHtml = require('sanitize-html');
-
+console.log(11);
 
 //서버 열기
 var app = http.createServer(function (request, response) {
@@ -39,7 +39,7 @@ var app = http.createServer(function (request, response) {
                 fs.readFile(`data/${filteredId}`, "utf-8", function (err, description) {
                     var title = queryData.id;
                     var sanitizedTitle = sanitizeHtml(title);
-                    var sanitizedDescription = sanitizeHtml(description, {allowedTags:['h1']});
+                    var sanitizedDescription = sanitizeHtml(description);
                     var list = template.List(files);
                     var html = template.HTML(sanitizedTitle, list,
                          `<h2>${sanitizedTitle}</h2>${sanitizedDescription}`,
