@@ -2,6 +2,7 @@ var url = require('url');
 var qs = require('querystring');
 var db = require('./db.js');
 var template = require('./template.js');
+var sanitizeHtml = require('sanitize-html');
 exports.home = function(request, response){
     db.query(`SELECT * FROM topic`, function(error,topics){
         var title = 'Welcome';
@@ -33,8 +34,8 @@ exports.page = function(request, response){
           var description = topic[0].description;
           var list = template.list(topics);
           var html = template.HTML(title, list,
-          `<h2>${title}</h2>${description} 
-           <p> by ${topic[0].name}</p>`,
+          `<h2>${sanitizeHtml(title)}</h2>${sanitizeHtml(description)} 
+           <p> by ${sanitizeHtml(topic[0].name)}</p>`,
           ` <a href="/create">create</a>
               <a href="/update?id=${queryData.id}">update</a>
               <form action="delete_process" method="post">
@@ -62,7 +63,7 @@ exports.create = function(request, response){
           
         var title = 'Create';
         var list = template.list(topics);
-        var html = template.HTML(title, list,
+        var html = template.HTML(sanitizeHtml(title), list,
           `<form action="/create_process" method="post">
           <p><input type="text" name="title" placeholder="title"></p>
           <p>
@@ -126,9 +127,9 @@ exports.update = function(request, response){
         `
         <form action="/update_process" method="post">
           <input type="hidden" name="id" value="${id}">
-          <p><input type="text" name="title" placeholder="title" value="${title}"></p>
+          <p><input type="text" name="title" placeholder="title" value="${sanitizeHtml(title)}"></p>
           <p>
-            <textarea name="description" placeholder="description">${description}</textarea>
+            <textarea name="description" placeholder="description">${sanitizeHtml(description)}</textarea>
           </p>
           <p>
             ${template.authorSelect(authors,cur[0].author_id)}
@@ -159,7 +160,7 @@ exports.update_process = function(request, response){
           var title = post.title;
           var description = post.description;
           var author = post.author;
-          db.query(`UPDATE topic set title=? ,description =?, author_id=? WHERE id=?`, [title, description, author, id],function(err, result){
+          db.query(`UPDATE topic set title=? ,description =?, author_id=? WHERE id=?`, [sanitizeHtml(title), sanitizeHtml(description), author, id],function(err, result){
             if(err){
               throw err;
             }
