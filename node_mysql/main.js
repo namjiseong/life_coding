@@ -66,7 +66,7 @@ var app = http.createServer(function(request,response){
             if(error2){
               throw error2;
             }
-            console.log(topic);
+            
             var title = topic[0].title;
             var description = topic[0].description;
             var list = template.list(topics);
@@ -152,6 +152,43 @@ var app = http.createServer(function(request,response){
 
       });
     } else if(pathname === '/update'){
+
+      db.query(`SELECT * FROM topic`, function(error,topics){
+          db.query(`SELECT * fROM topic WHERE id=?`,[queryData.id], function(error2, cur){
+            if(error2){
+              throw error2;
+            }
+            var title = cur[0].title;
+            var description = cur[0].description;
+            var id = cur[0].id;
+            var list = template.list(topics);
+            var html = template.HTML(title, list,
+          `
+          <form action="/update_process" method="post">
+            <input type="hidden" name="id" value="${id}">
+            <p><input type="text" name="title" placeholder="title" value="${title}"></p>
+            <p>
+              <textarea name="description" placeholder="description">${description}</textarea>
+            </p>
+            <p>
+              <input type="submit">
+            </p>
+          </form>
+          `,
+          `<a href="/create">create</a> <a href="/update?id=${id}">update</a>`
+        );
+        response.writeHead(200);
+        response.end(html);
+          
+          });
+        
+      });
+
+
+
+
+
+      /*
       fs.readdir('./data', function(error, filelist){
         var filteredId = path.parse(queryData.id).base;
         fs.readFile(`data/${filteredId}`, 'utf8', function(err, description){
@@ -176,6 +213,12 @@ var app = http.createServer(function(request,response){
           response.end(html);
         });
       });
+      
+
+      */
+
+
+
     } else if(pathname === '/update_process'){
       var body = '';
       request.on('data', function(data){
@@ -186,12 +229,27 @@ var app = http.createServer(function(request,response){
           var id = post.id;
           var title = post.title;
           var description = post.description;
+
+          db.query(`UPDATE topic set title=? ,description =? WHERE id=?`, [title, description, id],function(err, result){
+            if(err){
+              throw err;
+            }
+            
+            response.writeHead(302, {Location: `/?id=${id}`});
+            response.end();
+          });
+
+
+
+          /*
           fs.rename(`data/${id}`, `data/${title}`, function(error){
             fs.writeFile(`data/${title}`, description, 'utf8', function(err){
               response.writeHead(302, {Location: `/?id=${title}`});
               response.end();
             })
           });
+          */
+
       });
     } else if(pathname === '/delete_process'){
       var body = '';
