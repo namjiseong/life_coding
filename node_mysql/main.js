@@ -21,6 +21,7 @@ var app = http.createServer(function(request,response){
     var queryData = url.parse(_url, true).query;
     var pathname = url.parse(_url, true).pathname;
     if(pathname === '/'){
+
       if(queryData.id === undefined){
         
         db.query(`SELECT * FROM topic`, function(error,topics){
@@ -259,11 +260,20 @@ var app = http.createServer(function(request,response){
       request.on('end', function(){
           var post = qs.parse(body);
           var id = post.id;
+          /*
           var filteredId = path.parse(id).base;
           fs.unlink(`data/${filteredId}`, function(error){
             response.writeHead(302, {Location: `/`});
             response.end();
           })
+          */
+         db.query(`DELETE FROM topic WHERE id=?`,[id], function(err, result){
+           if (err){
+             throw err;
+           }
+           response.writeHead(302, {Location: `/`});
+           response.end();
+         })
       });
     } else {
       response.writeHead(404);
