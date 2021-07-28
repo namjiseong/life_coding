@@ -138,3 +138,27 @@ exports.update_process = function(request, response){
 
       });
 }
+
+exports.delete_process = function(request, response){
+    var body = '';
+    request.on('data', function(data){
+        body = body + data;
+    });
+    request.on('end', function(){
+        var post = qs.parse(body);
+        db.query(`DELETE FROM topic WHERE author_id =?`, [post.id], function(err2, topic){
+            if(err2){
+                throw err2;
+            }
+            db.query(`DELETE FROM author WHERE id=?;`,[post.id], function(error, result){
+                if(error){
+                throw error;
+                }
+            
+                response.writeHead(302, {Location: `/author`});
+                response.end();
+            });
+        });
+
+    });
+}
