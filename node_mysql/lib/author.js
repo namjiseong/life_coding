@@ -32,7 +32,7 @@ exports.home = function(request, response){
                 <textarea name="profile" placeholder="description"></textarea>
             </p>
             <p>
-                <input type="submit">
+                <input type="submit" value="create">
             </p>
             </form>
             `,
@@ -71,52 +71,48 @@ exports.update = function(request, response){
     var queryData = url.parse(_url, true).query;
     db.query(`SELECT * FROM topic`, function(error,topics){
         db.query(`SELECT * FROM author`, function(error,authors){
-            
-            var title = 'author';
-            var i = 0;
-            var name = '';
-            var profile = '';
-            while(authors.length > i){
-                if (authors[i].id == queryData.id){
-                    name = authors[i].name;
-                    profile = authors[i].profile;
-                }
-                i++;
-            }
-            var list = template.list(topics);
-            var html = template.HTML(title, list,
-            `<h2>${title}</h2>
-            <table>
-                    ${template.authorTable(authors)}
-            </table>
-            <style>
-               table{
-                   width: 33%;
-                   border-collapse:collapse;
-               }
-                td{
-                    border:1px solid black;
-                }
+            db.query(`SELECT * FROM author WHERE id=?`, [queryData.id],function(err3, author){
+                var title = 'author';
                 
-            </style>
+                var name = author[0].name;
+                var profile = author[0].profile;
+                
+                var list = template.list(topics);
+                var html = template.HTML(title, list,
+                `<h2>${title}</h2>
+                <table>
+                        ${template.authorTable(authors)}
+                </table>
+                <style>
+                table{
+                    width: 33%;
+                    border-collapse:collapse;
+                }
+                    td{
+                        border:1px solid black;
+                    }
+                    
+                </style>
 
-            <form action= "/author/update_process" method="post">
-                <input type="hidden" name="id" value="${queryData.id}">
-            <p>
-                <input type="text" name="name" placeholder="name" value="${name}">
-            </p>
-            <p>
-                <textarea name="profile" placeholder="description">${profile}</textarea>
-            </p>
-            <p>
-                <input type="submit">
-            </p>
-            </form>
-            `,
-            ``);
+                <form action= "/author/update_process" method="post">
+                    <input type="hidden" name="id" value="${queryData.id}">
+                <p>
+                    <input type="text" name="name" placeholder="name" value="${name}">
+                </p>
+                <p>
+                    <textarea name="profile" placeholder="description">${profile}</textarea>
+                </p>
+                <p>
+                    <input type="submit" value="update">
+                </p>
+                </form>
+                `,
+                ``);
+                
+                response.writeHead(200);
+                response.end(html);
+            });
             
-            response.writeHead(200);
-            response.end(html);
         });
     });
 }
