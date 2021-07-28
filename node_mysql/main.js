@@ -122,7 +122,7 @@ var app = http.createServer(function(request,response){
               <textarea name="description" placeholder="description"></textarea>
             </p>
             <p>
-              ${template.authorSelect(authors)}
+              ${template.authorSelect(authors, topics[0].author_id)}
             </p>
             <p>
               <input type="submit">
@@ -171,6 +171,11 @@ var app = http.createServer(function(request,response){
             if(error2){
               throw error2;
             }
+            db.query(`SELECT * FROM author`, function(error2, authors){
+              if(error2){
+                throw error2;
+              }
+
             var title = cur[0].title;
             var description = cur[0].description;
             var id = cur[0].id;
@@ -184,6 +189,9 @@ var app = http.createServer(function(request,response){
               <textarea name="description" placeholder="description">${description}</textarea>
             </p>
             <p>
+              ${template.authorSelect(authors,cur[0].author_id)}
+            </p>
+            <p>
               <input type="submit">
             </p>
           </form>
@@ -192,7 +200,7 @@ var app = http.createServer(function(request,response){
         );
         response.writeHead(200);
         response.end(html);
-          
+            });
           });
         
       });
@@ -242,8 +250,8 @@ var app = http.createServer(function(request,response){
           var id = post.id;
           var title = post.title;
           var description = post.description;
-
-          db.query(`UPDATE topic set title=? ,description =? WHERE id=?`, [title, description, id],function(err, result){
+          var author = post.author;
+          db.query(`UPDATE topic set title=? ,description =?, author_id=? WHERE id=?`, [title, description, author, id],function(err, result){
             if(err){
               throw err;
             }
