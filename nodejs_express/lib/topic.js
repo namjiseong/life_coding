@@ -42,8 +42,7 @@ exports.page = function(request, response){
                 <input type="submit" value="delete">
               </form>`
           );
-          response.writeHead(200);
-          response.end(html);
+          response.send(html);
         });
     
       });
@@ -77,8 +76,7 @@ exports.create = function(request, response){
         </form>`,
           `<a href="/create">create</a>`
         );
-        response.writeHead(200);
-        response.end(html);
+        response.send(html);
         });
       });
 }

@@ -21,6 +21,14 @@ app.get('/page/:pageId', function(request, response) {
   response.send(request.params);
 });
 
+app.get('/create',function(request, response){
+  topic.create(request, response);
+});
+
+app.post('/create_process',function(request, response){
+  topic.create_process(request, response);
+});
+
 app.listen(5500, function(){ 
   console.log('Example app listening on port 5500!');
 });
