@@ -23,7 +23,7 @@ module.exports = {
     var i = 0;
     while (i < topics.length) {
       list =
-        list + `<li><a href="/?id=${topics[i].id}">${sanitizeHtml(topics[i].title)}</a></li>`;
+        list + `<li><a href="/page/${topics[i].id}">${sanitizeHtml(topics[i].title)}</a></li>`;
       i = i + 1;
     }
     list = list + "</ul>";

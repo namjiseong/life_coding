@@ -18,13 +18,11 @@ exports.home = function(request, response){
 }
 
 exports.page = function(request, response){
-    var _url = request.url;
-    var queryData = url.parse(_url, true).query;
     db.query(`SELECT * FROM topic`, function(error,topics){
         if(error){
           throw error;
         }
-        db.query(`SELECT * FROM topic LEFT JOIN author ON topic.author_id=author.id WHERE topic.id=?`,[queryData.id], function(error2,topic){
+        db.query(`SELECT * FROM topic LEFT JOIN author ON topic.author_id=author.id WHERE topic.id=?`,[request.params.pageId], function(error2,topic){
           if(error2){
             throw error2;
           }
@@ -36,9 +34,9 @@ exports.page = function(request, response){
           `<h2>${sanitizeHtml(title)}</h2>${sanitizeHtml(description)} 
            <p> by ${sanitizeHtml(topic[0].name)}</p>`,
           ` <a href="/create">create</a>
-              <a href="/update?id=${queryData.id}">update</a>
+              <a href="/update?id=${request.params.pageId}">update</a>
               <form action="delete_process" method="post">
-                <input type="hidden" name="id" value="${queryData.id}">
+                <input type="hidden" name="id" value="${request.params.pageId}">
                 <input type="submit" value="delete">
               </form>`
           );
@@ -104,10 +102,8 @@ exports.create_process = function(request, response){
 }
 
 exports.update = function(request, response){
-    var _url = request.url;
-    var queryData = url.parse(_url, true).query;
     db.query(`SELECT * FROM topic`, function(error,topics){
-        db.query(`SELECT * fROM topic WHERE id=?`,[queryData.id], function(error2, cur){
+        db.query(`SELECT * fROM topic WHERE id=?`,[request.params.pageId], function(error2, cur){
           if(error2){
             throw error2;
           }

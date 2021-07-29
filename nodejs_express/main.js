@@ -9,16 +9,11 @@ var topic = require('./lib/topic');
 //route. routing
 //app.get('/', (req, res) => res.send('Hello World!')) - 최신버전 코드
 app.get('/', function(request, response) { 
-  var _url = request.url;
-  var queryData = url.parse(_url, true).query;
-  if (queryData.id === undefined) {
     topic.home(request, response);
-  }else {
-    topic.page(request, response);
-  }
 });
+
 app.get('/page/:pageId', function(request, response) { 
-  response.send(request.params);
+  topic.page(request, response);
 });
 
 app.get('/create',function(request, response){
@@ -29,7 +24,7 @@ app.post('/create_process',function(request, response){
   topic.create_process(request, response);
 });
 
-app.get('/update', function(request, response){
+app.get('/update/pageId', function(request, response){
   topic.update(request, response);
 });
 
@@ -38,7 +33,7 @@ app.post('/update_process', function(request, response){
 })
 
 app.listen(5500, function(){ 
-  console.log('Example app listening on port 5500!');
+  console.log('go!');
 });
 
 
