@@ -34,7 +34,7 @@ exports.page = function(request, response){
           `<h2>${sanitizeHtml(title)}</h2>${sanitizeHtml(description)} 
            <p> by ${sanitizeHtml(topic[0].name)}</p>`,
           ` <a href="/create">create</a>
-              <a href="/update?id=${request.params.pageId}">update</a>
+              <a href="/update/${request.params.pageId}">update</a>
               <form action="delete_process" method="post">
                 <input type="hidden" name="id" value="${request.params.pageId}">
                 <input type="submit" value="delete">
@@ -157,7 +157,7 @@ exports.update_process = function(request, response){
               throw err;
             }
             
-            response.writeHead(302, {Location: `/?id=${id}`});
+            response.writeHead(302, {Location: `/page/${id}`});
             response.end();
           });
         });

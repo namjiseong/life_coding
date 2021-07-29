@@ -61,7 +61,7 @@ module.exports = {
       <td>${authors[i].id}</td>
       <td>${sanitizeHtml(authors[i].name)}</td>
       <td>${sanitizeHtml(authors[i].profile)}</td>
-      <td><a href="/author/update?id=${authors[i].id}">update</a></td>
+      <td><a href="/author/update/${authors[i].id}">update</a></td>
       <td>
         <form action="author/delete_process" method="post">
           <input type="hidden" name="id" value="${authors[i].id}">

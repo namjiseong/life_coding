@@ -24,7 +24,7 @@ app.post('/create_process',function(request, response){
   topic.create_process(request, response);
 });
 
-app.get('/update/pageId', function(request, response){
+app.get('/update/:pageId', function(request, response){
   topic.update(request, response);
 });
 
