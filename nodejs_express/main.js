@@ -46,10 +46,14 @@ app.post('/update_process', function(request, response){
 app.post('/delete_process', function(request, response){
   topic.delete_process(request, response);
 })
+app.use(function(req, res, next){
+  res.status(404).send('Sorry cant find that!');
+})
 
 app.listen(5500, function(){ 
   console.log('go!');
 });
+
 
 
 /*
