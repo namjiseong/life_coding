@@ -5,10 +5,17 @@ var app = express();
 var url = require('url');
 var bodyParser = require('body-parser');
 var topic = require('./lib/topic');
+var compression = require('compression');
+const db = require('./lib/db');
 
 exports.app = app.use(bodyParser.urlencoded({extended: false}))
-
-
+app.use(compression());
+app.get('*', function(request, response, next){
+  topic.getlist().then(function(topics){
+    request.list = topics;
+    next();
+  })
+});
 //route. routing
 //app.get('/', (req, res) => res.send('Hello World!')) - 최신버전 코드
 app.get('/', function(request, response) { 

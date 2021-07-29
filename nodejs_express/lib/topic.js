@@ -4,25 +4,22 @@ var db = require('./db.js');
 var template = require('./template.js');
 var sanitizeHtml = require('sanitize-html');
 var bodyParser = require('body-parser');
+var compression = require('compression');
 exports.home = function(request, response){
-    db.query(`SELECT * FROM topic`, function(error,topics){
+    
         var title = 'Welcome';
         var description = 'Hello, express';
-        var list = template.list(topics);
+        var list = template.list(request.list);
         var html = template.HTML(title, list,
           `<h2>${title}</h2>${description}`,
           `<a href="/create">create</a>`
         );
         response.send(html);
-    });
 
 }
 
 exports.page = function(request, response){
-    db.query(`SELECT * FROM topic`, function(error,topics){
-        if(error){
-          throw error;
-        }
+    
         db.query(`SELECT * FROM topic LEFT JOIN author ON topic.author_id=author.id WHERE topic.id=?`,[request.params.pageId], function(error2,topic){
           if(error2){
             throw error2;
@@ -30,7 +27,7 @@ exports.page = function(request, response){
           
           var title = topic[0].title;
           var description = topic[0].description;
-          var list = template.list(topics);
+          var list = template.list(request.list);
           var html = template.HTML(title, list,
           `<h2>${sanitizeHtml(title)}</h2>${sanitizeHtml(description)} 
            <p> by ${sanitizeHtml(topic[0].name)}</p>`,
@@ -44,22 +41,19 @@ exports.page = function(request, response){
           response.send(html);
         });
     
-      });
     
 }
 
 exports.create = function(request, response){
-    db.query(`SELECT * FROM topic`, function(error,topics){
-        if(error){
-          throw error;
-        }
+    
+        
         db.query(`SELECT * FROM author`, function(error2, authors){
           if(error2){
             throw error2;
           }
           
         var title = 'Create';
-        var list = template.list(topics);
+        var list = template.list(request.list);
         var html = template.HTML(sanitizeHtml(title), list,
           `<form action="/create_process" method="post">
           <p><input type="text" name="title" placeholder="title"></p>
@@ -67,7 +61,7 @@ exports.create = function(request, response){
             <textarea name="description" placeholder="description"></textarea>
           </p>
           <p>
-            ${template.authorSelect(authors, topics[0].author_id)}
+            ${template.authorSelect(authors, authors[0].id)}
           </p>
           <p>
             <input type="submit">
@@ -77,7 +71,7 @@ exports.create = function(request, response){
         );
         response.send(html);
         });
-      });
+      
 }
 
 exports.create_process = function(request, response){
@@ -91,31 +85,9 @@ exports.create_process = function(request, response){
             }
             response.redirect(`/page/${result.insertId}`);
             })
-  /*  
-  var body = '';
-      request.on('data', function(data){
-          body = body + data;
-      });
-      request.on('end', function(){
-         var post = qs.parse(body);
-         db.query(`
-          INSERT INTO topic (title, description, created, author_id) VALUES(?,?,NOW(),?)
-          `,[post.title, post.description, post.author], 
-          function(error, result){
-            if(error){
-              throw error;
-            }
-            response.writeHead(302, {Location: `/?id=${result.insertId}`});
-            response.end();
-          }
-         )
-
-      });
-      */
 }
 
 exports.update = function(request, response){
-    db.query(`SELECT * FROM topic`, function(error,topics){
         db.query(`SELECT * fROM topic WHERE id=?`,[request.params.pageId], function(error2, cur){
           if(error2){
             throw error2;
@@ -128,7 +100,7 @@ exports.update = function(request, response){
           var title = cur[0].title;
           var description = cur[0].description;
           var id = cur[0].id;
-          var list = template.list(topics);
+          var list = template.list(request.list);
           var html = template.HTML(title, list,
         `
         <form action="/update_process" method="post">
@@ -151,7 +123,7 @@ exports.update = function(request, response){
           });
         });
       
-    });
+    
 }
 
 exports.update_process = function(request, response){
@@ -181,4 +153,13 @@ exports.delete_process = function(request, response){
            }
            response.redirect('/');
          });
+}
+
+exports.getlist = function(request, response){
+  return new Promise(function(resolve, reject){
+    db.query(`SELECT * FROM topic`,function(error,topics){
+      resolve(topics);
+    })
+  })
+  
 }
