@@ -157,8 +157,8 @@ exports.update_process = function(request, response){
               throw err;
             }
             
-            response.writeHead(302, {Location: `/page/${id}`});
-            response.end();
+            response.redirect(`/page/${id}`);
+            
           });
         });
 }
@@ -176,8 +176,7 @@ exports.delete_process = function(request, response){
            if (err){
              throw err;
            }
-           response.writeHead(302, {Location: `/`});
-           response.end();
+           response.redirect('/');
          })
       });
 }
