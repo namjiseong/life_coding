@@ -1,15 +1,24 @@
 //const -> 고정
 //const express = require('express')
-var express = require('express')
-var app = express()
+var express = require('express');
+var app = express();
+var url = require('url');
+
+var topic = require('./lib/topic');
 
 //route. routing
 //app.get('/', (req, res) => res.send('Hello World!')) - 최신버전 코드
-app.get('/', function(req, res) { 
-  return res.send('/')
+app.get('/', function(request, response) { 
+  var _url = request.url;
+  var queryData = url.parse(_url, true).query;
+  if (queryData.id === undefined) {
+    topic.home(request, response);
+  }else {
+    topic.page(request, response);
+  }
 });
-app.get('/page', function(req, res) { 
-  return res.send('/page')
+app.get('/page/:pageId', function(request, response) { 
+  response.send(request.params);
 });
 
 app.listen(5500, function(){ 
