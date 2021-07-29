@@ -32,6 +32,10 @@ app.post('/update_process', function(request, response){
   topic.update_process(request, response);
 })
 
+app.post('/delete_process', function(request, response){
+  topic.delete_process(request, response);
+})
+
 app.listen(5500, function(){ 
   console.log('go!');
 });
