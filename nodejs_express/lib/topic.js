@@ -138,8 +138,7 @@ exports.update = function(request, response){
         `,
         `<a href="/create">create</a> <a href="/update?id=${id}">update</a>`
       );
-      response.writeHead(200);
-      response.end(html);
+      response.send(html);
           });
         });
       

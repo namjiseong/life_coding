@@ -29,6 +29,14 @@ app.post('/create_process',function(request, response){
   topic.create_process(request, response);
 });
 
+app.get('/update', function(request, response){
+  topic.update(request, response);
+});
+
+app.post('/update_process', function(request, response){
+  topic.update_process(request, response);
+})
+
 app.listen(5500, function(){ 
   console.log('Example app listening on port 5500!');
 });
