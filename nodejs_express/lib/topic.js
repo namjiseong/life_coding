@@ -3,6 +3,7 @@ var qs = require('querystring');
 var db = require('./db.js');
 var template = require('./template.js');
 var sanitizeHtml = require('sanitize-html');
+var bodyParser = require('body-parser');
 exports.home = function(request, response){
     db.query(`SELECT * FROM topic`, function(error,topics){
         var title = 'Welcome';
@@ -80,7 +81,18 @@ exports.create = function(request, response){
 }
 
 exports.create_process = function(request, response){
-    var body = '';
+  var post = request.body;
+  db.query(`
+          INSERT INTO topic (title, description, created, author_id) VALUES(?,?,NOW(),?)
+          `,[post.title, post.description, post.author], 
+          function(error, result){
+            if(error){
+              throw error;
+            }
+            response.redirect(`/page/${result.insertId}`);
+            })
+  /*  
+  var body = '';
       request.on('data', function(data){
           body = body + data;
       });
@@ -99,6 +111,7 @@ exports.create_process = function(request, response){
          )
 
       });
+      */
 }
 
 exports.update = function(request, response){
@@ -142,12 +155,7 @@ exports.update = function(request, response){
 }
 
 exports.update_process = function(request, response){
-    var body = '';
-      request.on('data', function(data){
-          body = body + data;
-      });
-      request.on('end', function(){
-          var post = qs.parse(body);
+          var post = request.body;
           var id = post.id;
           var title = post.title;
           var description = post.description;
@@ -160,16 +168,11 @@ exports.update_process = function(request, response){
             response.redirect(`/page/${id}`);
             
           });
-        });
+        
 }
 
 exports.delete_process = function(request, response){
-    var body = '';
-      request.on('data', function(data){
-          body = body + data;
-      });
-      request.on('end', function(){
-          var post = qs.parse(body);
+          var post = request.body;
           var id = post.id;
           
          db.query(`DELETE FROM topic WHERE id=?`,[id], function(err, result){
@@ -177,6 +180,5 @@ exports.delete_process = function(request, response){
              throw err;
            }
            response.redirect('/');
-         })
-      });
+         });
 }

@@ -3,8 +3,11 @@
 var express = require('express');
 var app = express();
 var url = require('url');
-
+var bodyParser = require('body-parser');
 var topic = require('./lib/topic');
+
+exports.app = app.use(bodyParser.urlencoded({extended: false}))
+
 
 //route. routing
 //app.get('/', (req, res) => res.send('Hello World!')) - 최신버전 코드
