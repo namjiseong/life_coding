@@ -11,7 +11,10 @@ exports.home = function(request, response){
         var description = 'Hello, express';
         var list = template.list(request.list);
         var html = template.HTML(title, list,
-          `<h2>${title}</h2>${description}`,
+          `<h2>${title}</h2>${description}
+          <p>
+          <img src="/images/hello.jpg" style="width:300px; height:300px; margin-top:10px;">
+          </p>`,
           `<a href="/create">create</a>`
         );
         response.send(html);

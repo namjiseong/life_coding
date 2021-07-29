@@ -6,9 +6,10 @@ var url = require('url');
 var bodyParser = require('body-parser');
 var topic = require('./lib/topic');
 var compression = require('compression');
-const db = require('./lib/db');
+var path = require('path');
 
 exports.app = app.use(bodyParser.urlencoded({extended: false}))
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(compression());
 app.get('*', function(request, response, next){
   topic.getlist().then(function(topics){
