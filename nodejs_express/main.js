@@ -6,6 +6,8 @@ var url = require('url');
 var bodyParser = require('body-parser');
 var topic = require('./lib/topic');
 var compression = require('compression');
+var helmet = require('helmet')
+app.use(helmet());
 var path = require('path');
 var topicRouter = require('./routes/topic')
 var indexRouter = require('./routes/index')
