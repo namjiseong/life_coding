@@ -8,6 +8,7 @@ var topic = require('./lib/topic');
 var compression = require('compression');
 var path = require('path');
 var topicRouter = require('./routes/topic')
+var indexRouter = require('./routes/index')
 exports.app = app.use(bodyParser.urlencoded({extended: false}))
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(compression());
@@ -18,11 +19,11 @@ app.get('*', function(request, response, next){
   })
 });
 app.use('/topic', topicRouter);
+app.use('/', indexRouter);
+
 //route. routing
 //app.get('/', (req, res) => res.send('Hello World!')) - 최신버전 코드
-app.get('/', function(request, response) { 
-    topic.home(request, response);
-});
+
 
 
 app.use(function(req, res, next){
