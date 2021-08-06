@@ -34,9 +34,9 @@ exports.page = function(request, response){
           var html = template.HTML(title, list,
           `<h2>${sanitizeHtml(title)}</h2>${sanitizeHtml(description)} 
            <p> by ${sanitizeHtml(topic[0].name)}</p>`,
-          ` <a href="/create">create</a>
-              <a href="/update/${request.params.pageId}">update</a>
-              <form action="/delete_process" method="post">
+          ` <a href="/topic/create">create</a>
+              <a href="/topic/update/${request.params.pageId}">update</a>
+              <form action="/topic/delete_process" method="post">
                 <input type="hidden" name="id" value="${request.params.pageId}">
                 <input type="submit" value="delete">
               </form>`
@@ -57,8 +57,8 @@ exports.create = function(request, response){
           
         var title = 'Create';
         var list = template.list(request.list);
-        var html = template.HTML(sanitizeHtml(title), list,
-          `<form action="/create_process" method="post">
+        var html = template.HTML(title, list,
+          `<form action="/topic/create_process" method="post">
           <p><input type="text" name="title" placeholder="title"></p>
           <p>
             <textarea name="description" placeholder="description"></textarea>
@@ -70,7 +70,7 @@ exports.create = function(request, response){
             <input type="submit">
           </p>
         </form>`,
-          `<a href="/create">create</a>`
+          `<a href="/topic/create">create</a>`
         );
         response.send(html);
         });
@@ -86,7 +86,7 @@ exports.create_process = function(request, response){
             if(error){
               throw error;
             }
-            response.redirect(`/page/${result.insertId}`);
+            response.redirect(`/topic/page/${result.insertId}`);
             })
 }
 
@@ -106,7 +106,7 @@ exports.update = function(request, response){
           var list = template.list(request.list);
           var html = template.HTML(title, list,
         `
-        <form action="/update_process" method="post">
+        <form action="/topic/update_process" method="post">
           <input type="hidden" name="id" value="${id}">
           <p><input type="text" name="title" placeholder="title" value="${sanitizeHtml(title)}"></p>
           <p>
@@ -120,7 +120,7 @@ exports.update = function(request, response){
           </p>
         </form>
         `,
-        `<a href="/create">create</a> <a href="/update?id=${id}">update</a>`
+        `<a href="/topic/create">create</a> <a href="/topic/update?id=${id}">update</a>`
       );
       response.send(html);
           });
@@ -140,7 +140,7 @@ exports.update_process = function(request, response){
               throw err;
             }
             
-            response.redirect(`/page/${id}`);
+            response.redirect(`/topic/page/${id}`);
             
           });
         

@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 var topic = require('./lib/topic');
 var compression = require('compression');
 var path = require('path');
-
+var topicRouter = require('./routes/topic')
 exports.app = app.use(bodyParser.urlencoded({extended: false}))
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(compression());
@@ -17,35 +17,14 @@ app.get('*', function(request, response, next){
     next();
   })
 });
+app.use('/topic', topicRouter);
 //route. routing
 //app.get('/', (req, res) => res.send('Hello World!')) - 최신버전 코드
 app.get('/', function(request, response) { 
     topic.home(request, response);
 });
 
-app.get('/page/:pageId', function(request, response) { 
-  topic.page(request, response);
-});
 
-app.get('/create',function(request, response){
-  topic.create(request, response);
-});
-
-app.post('/create_process',function(request, response){
-  topic.create_process(request, response);
-});
-
-app.get('/update/:pageId', function(request, response){
-  topic.update(request, response);
-});
-
-app.post('/update_process', function(request, response){
-  topic.update_process(request, response);
-})
-
-app.post('/delete_process', function(request, response){
-  topic.delete_process(request, response);
-})
 app.use(function(req, res, next){
   res.status(404).send('Sorry cant find that!');
 })
